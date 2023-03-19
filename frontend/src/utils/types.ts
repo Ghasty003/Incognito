@@ -26,7 +26,7 @@ export interface AuthActionProp {
 
 
 export interface MessageProp {
-    _id: string;
+    _id?: string;
     message: string;
     createdAt: string;
 }
