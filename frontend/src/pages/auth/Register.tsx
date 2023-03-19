@@ -6,14 +6,31 @@ import Nav from '../../components/Nav';
 
 function Register() {
 
-    const [userName, setUserName] = useState("");
+    const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
     const [loading, setLoading] = useState<boolean>(false);
     const [err, setErr] = useState("");
 
-    const handleSubmit = () => {
-        
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const res = await fetch("http://localhost:3000/auth/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ username, password })
+        });
+
+        const json = await res.json();
+
+        if (!res.ok) {
+            console.log("Error", json);
+        }
+
+        if (res.ok) {
+            console.log(json)
+        }
     }
 
     return (
@@ -34,7 +51,7 @@ function Register() {
 
                         <div className='flex items-center my-4 bg-gray-900 py-1 rounded-md'>
                             <p className='h-[40px] text-center flex items-center justify-center p-2'><AiOutlineUser size={20} /></p>
-                            <input value={userName} onChange={e => setUserName(e.target.value)} className='w-11/12 py-2 px-1 bg-gray-900' type="text" placeholder='Username' />
+                            <input value={username} onChange={e => setUserName(e.target.value)} className='w-11/12 py-2 px-1 bg-gray-900' type="text" placeholder='Username' />
                         </div>
 
 
