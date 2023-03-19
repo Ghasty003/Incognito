@@ -6,7 +6,7 @@ export interface ContextProp {
 }
 
 export interface AuthContextProp {
-    user: AuthStateProp;
+    user: object | null;
     dispatch: React.Dispatch<AuthActionProp>;
 }
 
