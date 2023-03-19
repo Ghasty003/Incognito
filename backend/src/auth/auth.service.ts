@@ -18,7 +18,7 @@ export class AuthService {
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(password, salt);
 
-        const exists = await this.userModel.find({ username });
+        const exists = await this.userModel.findOne({ username });
 
         if (exists) {
             throw new BadRequestException("User already exists");
@@ -29,7 +29,7 @@ export class AuthService {
         const token = this.jwtService.sign({ id: user._id });
 
         return {
-            user, token
+            username, token
         };
     }
 }

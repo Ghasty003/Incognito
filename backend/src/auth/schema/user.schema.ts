@@ -6,7 +6,7 @@ import { SchemaFactory } from "@nestjs/mongoose/dist";
 
 export class User {
 
-    @Prop()
+    @Prop({ unique: [true, "User already exist"]})
     username: string;
 
     @Prop()
