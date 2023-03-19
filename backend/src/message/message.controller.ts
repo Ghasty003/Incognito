@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateMessageDto } from './dto/create-message.dto';
 import { MessageService } from './message.service';
 
@@ -10,5 +10,11 @@ export class MessageController {
     @Post()
     async create(@Body() createDto: CreateMessageDto) {
         return this.messageService.create(createDto);
+    }
+
+
+    @Get("username")
+    async findAll(@Param("username") username: string) {
+        return this.messageService.findAll(username);
     }
 }
