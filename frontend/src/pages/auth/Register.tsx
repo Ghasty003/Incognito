@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { AiOutlineUser, RiLockPasswordFill } from "react-icons/all";
 import { Link } from 'react-router-dom';
 import logo from "../../assets/anonymous-message.png";
 import Nav from '../../components/Nav';
+import AuthContext from '../../contexts/AuthContext';
 
 function Register() {
 
@@ -10,6 +11,8 @@ function Register() {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState<boolean>(false);
     const [err, setErr] = useState("");
+
+    const { dispatch } = useContext(AuthContext);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -33,7 +36,7 @@ function Register() {
 
         if (res.ok) {
             setLoading(false);
-            console.log(json)
+            dispatch({ type: "LOGIN", payload: json });
         }
     }
 
