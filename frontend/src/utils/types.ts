@@ -5,13 +5,18 @@ export interface ContextProp {
     children: React.ReactNode;
 }
 
+type User = {
+    username: string;
+    token: string;
+}
+
 export interface AuthContextProp {
-    user: object | null;
+    user: User | null;
     dispatch: React.Dispatch<AuthActionProp>;
 }
 
 export interface AuthStateProp {
-    user: object | null;
+    user: User | any;
 }
 
 export interface AuthActionProp {
