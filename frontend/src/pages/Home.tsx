@@ -18,7 +18,7 @@ function Home() {
                 <img className='w-80 h-80 rounded-lg' src={header} alt="header" />
             </div>
 
-            <div>
+            <div className='mt-10'>
                 <button className='bg-blue-400 text-gray-100 px-8 py-3 rounded-xl active:scale-95 duration-200 hover:drop-shadow-2xl hover:bg-blue-400 hover:text-gray-300'>
                     Get started
                 </button>
