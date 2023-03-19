@@ -13,7 +13,7 @@ export class MessageController {
     }
 
 
-    @Get("username")
+    @Get(":username")
     async findAll(@Param("username") username: string) {
         return this.messageService.findAll(username);
     }
