@@ -22,10 +22,10 @@ function CustomLink({ to, name }: Props) {
     )
 }
 
-function Nav({ bg }: { bg: boolean}) {
+function Nav() {
 
     return (
-        <nav className={`flex justify-between px-32 py-6 bg-navbg sticky top-0 items-center ${bg && "bg-navbg" }`}>
+        <nav className={`flex justify-between px-32 py-6 bg-navbg sticky top-0 items-center }`}>
             <Link to="/" className='flex items-center gap-1'>
                 <img className='w-12 h-12' src={logo} alt="logo" />
                 <h1 className='text-2xl'>Incognito.</h1>

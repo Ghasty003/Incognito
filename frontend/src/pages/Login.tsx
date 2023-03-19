@@ -19,7 +19,7 @@ function Login() {
     return (
         <div>
             
-            <Nav bg={true} />
+            <Nav />
 
             <div className='flex flex-wrap justify-around items-center mt-20 px-32'>
 

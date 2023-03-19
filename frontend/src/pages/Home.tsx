@@ -6,7 +6,7 @@ function Home() {
     return (
         <div className='custom-bg'>
             
-            <Nav bg={false} />
+            <Nav />
 
             <div className='px-32 pt-10 pb-28 text-white'>
 
