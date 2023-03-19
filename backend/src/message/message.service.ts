@@ -25,7 +25,7 @@ export class MessageService {
 
 
     async findAll(username: string) {
-        const messages = await this.messageModel.find({ username });
+        const messages = await this.messageModel.find({ receiver: username });
 
         return messages;
     }
