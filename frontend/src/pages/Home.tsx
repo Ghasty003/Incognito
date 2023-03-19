@@ -3,7 +3,7 @@ import Nav from '../components/Nav';
 
 function Home() {
     return (
-        <div>
+        <div className='custom-bg'>
             <Nav />
             Home page
         </div>
