@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AiOutlineUser, RiLockPasswordFill } from "react-icons/all";
 import { Link } from 'react-router-dom';
 import logo from "../assets/anonymous-message.png";
-import Nav from '../components/Nav';
+import Nav from '../../components/Nav';
 
 function Login() {
 
