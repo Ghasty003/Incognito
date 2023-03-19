@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from "@nestjs/mongoose"
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './schema/user.schema';
@@ -31,5 +31,28 @@ export class AuthService {
         return {
             username, token
         };
+    }
+
+    
+    async login(createDto: CreateUserDto) {
+        const { username, password } = createDto;
+
+        const user = await this.userModel.findOne({ username });
+
+        if (!user) {
+            throw new UnauthorizedException("Username is invalid.");
+        }
+
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+
+        if (!isPasswordMatch) {
+            throw new UnauthorizedException("Password is invalid");
+        }
+
+        const token = this.jwtService.sign({ id: user._id });
+
+        return {
+            username, token
+        }
     }
 }
