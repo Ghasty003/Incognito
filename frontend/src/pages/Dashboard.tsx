@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AiOutlineCopy, MdDone } from "react-icons/all";
 import Message from '../components/Message';
 import AuthContext from '../contexts/AuthContext';
+import { MessageProp } from '../utils/types';
 
 
 function Dashboard() {
@@ -10,7 +11,7 @@ function Dashboard() {
 
     const [copied, setCopied] = React.useState(false);
 
-    const [messages, setMessages] = React.useState<Array<string>>([]);
+    const [messages, setMessages] = React.useState<Array<MessageProp>>([]);
 
     const webUrl = location.host;
     const userProfile = `${webUrl}?user=${user?.username}`;
@@ -28,6 +29,27 @@ function Dashboard() {
             }, 1000);
         }
     }
+
+
+    useEffect(() => {
+        async function getMessages() {
+            const response = await fetch("http://localhost:3000/message/" + user?.username);
+
+            const json = await response.json();
+
+
+            if (!response.ok) {
+                console.log("Error", json);
+            }
+
+            if (response.ok) {
+                setMessages(json);
+                console.log(json)
+            }
+        }
+
+        getMessages();
+    }, []);
 
     return (
         <div className='flex flex-col items-center'>
@@ -54,8 +76,8 @@ function Dashboard() {
                 <h2>Messages</h2>
 
                 {
-                    messages.map(message => (
-                        <Message />
+                    messages.map((message) => (
+                        <Message key={message._id} props={{ message: message.message, createdAt: message.createdAt}} />
                     ))
                 }
             </div>
