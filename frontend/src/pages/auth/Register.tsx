@@ -13,10 +13,12 @@ function Register() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        
+        setLoading(true);
 
         const res = await fetch("http://localhost:3000/auth/signup", {
             method: "POST",
-            headers: { 
+            headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({ username, password })
@@ -25,10 +27,12 @@ function Register() {
         const json = await res.json();
 
         if (!res.ok) {
-            console.log("Error", json);
+            setErr(json.message);
+            setLoading(false);
         }
 
         if (res.ok) {
+            setLoading(false);
             console.log(json)
         }
     }
