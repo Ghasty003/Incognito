@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    @apply bg-primary text-white;
+}
 
 .custom-bg {
     background: url("./assets/background.jpg");
