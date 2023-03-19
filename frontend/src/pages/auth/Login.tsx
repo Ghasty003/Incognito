@@ -1,19 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { AiOutlineUser, RiLockPasswordFill } from "react-icons/all";
 import { Link } from 'react-router-dom';
 import logo from "../../assets/anonymous-message.png";
 import Nav from '../../components/Nav';
+import AuthContext from '../../contexts/AuthContext';
 
 function Login() {
 
-    const [userName, setUserName] = useState("");
+    const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
     const [loading, setLoading] = useState<boolean>(false);
     const [err, setErr] = useState("");
 
-    const handleSubmit = () => {
+    const { dispatch } = useContext(AuthContext);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
         
+        setLoading(true);
+
+        const res = await fetch("http://localhost:3000/auth/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ username, password })
+        });
+
+        const json = await res.json();
+
+        if (!res.ok) {
+            setErr(json.message);
+            setLoading(false);
+        }
+
+        if (res.ok) {
+            setLoading(false);
+            dispatch({ type: "LOGIN", payload: json });
+            localStorage.setItem("user", JSON.stringify(json));
+        }
     }
 
     return (
@@ -34,7 +59,7 @@ function Login() {
 
                         <div className='flex items-center my-4 bg-gray-900 py-1 rounded-md'>
                             <p className='h-[40px] text-center flex items-center justify-center p-2'><AiOutlineUser size={20} /></p>
-                            <input value={userName} onChange={e => setUserName(e.target.value)} className='w-11/12 py-2 px-1 bg-gray-900' type="text" placeholder='Username' />
+                            <input value={username} onChange={e => setUserName(e.target.value)} className='w-11/12 py-2 px-1 bg-gray-900' type="text" placeholder='Username' />
                         </div>
 
 
