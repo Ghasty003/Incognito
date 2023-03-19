@@ -23,4 +23,11 @@ export class MessageService {
         return m;
     }
 
+
+    async findAll(username: string) {
+        const messages = await this.messageModel.find({ username });
+
+        return messages;
+    }
+
 }
