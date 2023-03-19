@@ -1,9 +1,35 @@
 import React from 'react';
+import { Link, To } from 'react-router-dom';
+import logo from "../assets/anonymous-message.png";
+
+interface Props {
+    to: To;
+    name: string;
+}
+
+function CustomLink({ to, name }: Props) {
+
+    return (
+        <div>
+            <Link to={to}>{ name }</Link>
+        </div>
+    )
+}
 
 function Nav() {
+
     return (
-        <nav>
-            <div>Nav</div>
+        <nav className='flex justify-between items-center'>
+            <Link to="/" className='flex items-center'>
+                <img className='w-12 h-12' src={logo} alt="logo" />
+                <p>Incognito.</p>
+            </Link>
+
+            <div className='flex justify-between items-center gap-10'>
+                <CustomLink to="/" name='Home'  />
+                <CustomLink to="/contact" name='Contact' />
+                <CustomLink to="/" name='Get started' />
+            </div>
         </nav>
     );
 }
