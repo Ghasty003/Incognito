@@ -1,5 +1,6 @@
 import React from 'react';
 import { AiOutlineCopy, MdDone } from "react-icons/all";
+import Message from '../components/Message';
 import AuthContext from '../contexts/AuthContext';
 
 
@@ -9,8 +10,10 @@ function Dashboard() {
 
     const [copied, setCopied] = React.useState(false);
 
+    const [messages, setMessages] = React.useState<Array<string>>([]);
+
     const webUrl = location.host;
-    const userProfile = `${webUrl}/?user=${user?.username}`;
+    const userProfile = `${webUrl}?user=${user?.username}`;
 
 
     const handleCopy = async () => {
@@ -50,9 +53,11 @@ function Dashboard() {
             <div className='bg-navbg w-[400px] text-center p-10 rounded-lg mt-20'>
                 <h2>Messages</h2>
 
-                <div>
-
-                </div>
+                {
+                    messages.map(message => (
+                        <Message />
+                    ))
+                }
             </div>
 
         </div>
