@@ -32,6 +32,10 @@ function Register() {
         if (!res.ok) {
             setErr(json.message);
             setLoading(false);
+
+            setTimeout(() => {
+                setErr("");
+            }, 3000);
         }
 
         if (res.ok) {
