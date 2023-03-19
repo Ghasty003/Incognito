@@ -23,3 +23,10 @@ export interface AuthActionProp {
     type: "LOGIN" | "LOGOUT";
     payload: object;
 }
+
+
+export interface MessageProp {
+    _id: string;
+    message: string;
+    createdAt: string;
+}
