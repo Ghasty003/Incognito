@@ -73,7 +73,7 @@ function Dashboard() {
             </div>
 
             <div className='bg-navbg w-[400px] text-center p-10 rounded-lg mt-20'>
-                <h2>Messages</h2>
+                <h2>Messages ({ messages.length })</h2>
 
                 {
                     messages.map((message) => (
