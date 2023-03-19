@@ -5,7 +5,8 @@ module.exports = {
     extend: {
       colors: {
         primary: "#251e3e",
-        "nav-bg": "rgba(0, 0, 0, .2)",
+        navbg: "rgba(0, 0, 0, .2)",
+        dodger: "#1e90ff",
       },
     },
   },
