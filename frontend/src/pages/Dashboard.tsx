@@ -33,7 +33,7 @@ function Dashboard() {
 
     useEffect(() => {
         async function getMessages() {
-            const response = await fetch("http://localhost:3000/message/" + user?.username);
+            const response = await fetch("http://localhost:3000/message?user=" + user?.username);
 
             const json = await response.json();
 
