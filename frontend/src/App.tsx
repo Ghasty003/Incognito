@@ -12,13 +12,14 @@ function App() {
 
   const { user } = useContext(AuthContext);
 
+  
   return (
     <Routes>
       <Route path="/" element={!user ? <Home /> : <Navigate to="/dashboard" />} />
       <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
       <Route path="/register" element={!user ? <Register /> : <Navigate to="/dashboard" />} />
       <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" />} />
-      <Route path="/send/:id" element={<SendMessage />} />
+      <Route path="/send" element={<SendMessage />} />
     </Routes>
   )
 }
