@@ -61,9 +61,9 @@ export class AuthService {
         const user = await this.userModel.findOne({ username });
 
         if (!user) {
-            throw new BadRequestException("User dosen't exist");
+            return false;
         }
 
-        return user;
+        return true;
     }
 }
