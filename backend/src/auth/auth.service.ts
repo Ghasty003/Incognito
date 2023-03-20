@@ -55,4 +55,15 @@ export class AuthService {
             username, token
         }
     }
+
+
+    async findUser(username: string) {
+        const user = await this.userModel.findOne({ username });
+
+        if (!user) {
+            throw new BadRequestException("User dosen't exist");
+        }
+
+        return user;
+    }
 }
