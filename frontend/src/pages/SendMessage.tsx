@@ -1,9 +1,13 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import Nav from '../components/Nav';
+import { BsSend } from "react-icons/all";
 
 function SendMessage() {
 
     const query = new URLSearchParams(location.search);
+
+    const [exist, setExist] = useState(false);
 
     if (!query.has("user")) {
         return <Navigate to="/" />
@@ -11,11 +15,42 @@ function SendMessage() {
 
     const user = query.get("user");
     // console.log(user);
+
+    useEffect(() => {
+        async function getUser() {
+            const res = await fetch("http://localhost:3000/auth?user=" + user);
+
+            const json = await res.json();
+            // console.log(json)
+
+            setExist(json);
+        }
+
+        getUser()
+    }, [])
  
     return (
-        <div>
-            Send message
-        </div>
+        <>
+        <Nav />
+
+            <div className='flex flex-wrap justify-around items-center translate-y-1/2 px-32'>
+
+                <div className='bg-navbg text-center sm:mt-0 mt-8 sm:w-96 h-[250px] flex flex-col rounded-lg p-6'>
+
+                    <h2 className='text-xl'>Send a secret message to { user }</h2>
+
+                    <form className='mt-6'>
+                        <input type="text" className='border-none outline-none caret-dodger bg-primary w-60 pb-20 rounded' />
+                        <br />
+
+                        <button className='flex items-center justify-center gap-1 bg-dodger px-6 py-2 rounded-lg mt-4 relative left-1/2 -translate-x-1/2 shadow-2xl'>
+                         <BsSend /> Send
+                        </button>
+                    </form>
+                </div>
+                
+            </div>
+        </>
     );
 }
 
