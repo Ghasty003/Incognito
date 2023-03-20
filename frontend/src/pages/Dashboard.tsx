@@ -14,7 +14,7 @@ function Dashboard() {
     const [messages, setMessages] = React.useState<Array<MessageProp>>([]);
 
     const webUrl = location.host;
-    const userProfile = `${webUrl}?user=${user?.username}`;
+    const userProfile = `${webUrl}/send?user=${user?.username}`;
 
 
     const handleCopy = async () => {
