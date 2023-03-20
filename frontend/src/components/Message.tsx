@@ -12,7 +12,7 @@ function Message({ message, createdAt }: MessageProp) {
         <div className='bg-primary my-4 p-2 rounded'>
             <div className='flex justify-between items-center '>
                 <p>{ message }</p>
-                <AiFillDelete />
+                <AiFillDelete className='text-red-600 text-xl cursor-pointer' />
             </div>
 
             { date.getHours() <= 24 ? <p className='text-start'>{ date.getHours() } hrs ago</p> :
