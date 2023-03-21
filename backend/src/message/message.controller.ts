@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Query, Post, Delete, Param } from '@nestjs/common';
+import { Body, Controller, Get, Query, Post, Delete, Param, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CreateMessageDto } from './dto/create-message.dto';
 import { MessageService } from './message.service';
 
@@ -12,8 +13,9 @@ export class MessageController {
         return this.messageService.create(createDto);
     }
 
-
+    
     @Get()
+    @UseGuards(AuthGuard())
     async findAll(@Query("user") username: string) {
         return this.messageService.findAll(username);
     }
