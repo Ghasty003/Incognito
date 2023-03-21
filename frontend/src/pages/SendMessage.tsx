@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import Nav from '../components/Nav';
 import { BsSend } from "react-icons/all";
+import img404 from "../assets/panda-404.png";
 
 function SendMessage() {
 
@@ -26,7 +27,7 @@ function SendMessage() {
             setExist(json);
         }
 
-        getUser()
+        getUser();
     }, [])
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -56,23 +57,33 @@ function SendMessage() {
         <>
         <Nav />
 
-            <div className='flex flex-wrap justify-around items-center translate-y-1/2 px-32'>
+            {
+                exist ? (
+                    <div className='flex flex-wrap justify-around items-center translate-y-1/2 px-32'>
 
-                <div className='bg-navbg text-center sm:mt-0 mt-8 sm:w-96 h-[250px] flex flex-col rounded-lg p-6'>
+                        <div className='bg-navbg text-center sm:mt-0 mt-8 sm:w-96 h-[250px] flex flex-col rounded-lg p-6'>
 
-                    <h2 className='text-xl'>Send a secret message to { user }</h2>
+                            <h2 className='text-xl'>Send a secret message to { user }</h2>
 
-                    <form onSubmit={handleSubmit} className='mt-6'>
-                        <input value={message} onChange={(e) => setMessage(e.target.value)} type="text" className='border-none outline-none caret-dodger bg-primary w-60 pb-20 rounded' />
-                        <br />
+                            <form onSubmit={handleSubmit} className='mt-6'>
+                                <input value={message} onChange={(e) => setMessage(e.target.value)} type="text" className='border-none outline-none caret-dodger bg-primary w-60 pb-20 rounded' />
+                                <br />
 
-                        <button className='flex items-center justify-center gap-1 bg-dodger px-6 py-2 rounded-lg mt-4 relative left-1/2 -translate-x-1/2'>
-                         <BsSend /> Send
-                        </button>
-                    </form>
-                </div>
+                                <button className='flex items-center justify-center gap-1 bg-dodger px-6 py-2 rounded-lg mt-4 relative left-1/2 -translate-x-1/2'>
+                                <BsSend /> Send
+                                </button>
+                            </form>
+                        </div>
                 
-            </div>
+                    </div>
+                ) : (
+                    <div className='flex flex-col justify-center items-center gap-4 translate-y-1/2'>
+                        <img className='w-60 h-52 rounded-md' src={img404} alt="404" />
+                        <p>No such user with the username "{ user }".</p>
+                        <p>Try checking for possible typographical error.</p>
+                    </div>
+                )
+            }
         </>
     );
 }
