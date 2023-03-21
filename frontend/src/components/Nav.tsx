@@ -74,7 +74,7 @@ function Nav() {
                 <h1 className='text-2xl'>Incognito.</h1>
             </Link>
 
-            <div ref={nav} className='flex sm:flex-row sm:bg-transparent sm:relative sm:w-fit sm:gap-10 justify-center items-center bg-navbgSm h-full fixed top-0 -right-[100%] w-[280px] drop-shadow-2xl gap-14 flex-col'>
+            <div ref={nav} className='flex sm:flex-row sm:bg-transparent sm:relative sm:right-0 sm:w-fit sm:gap-10 justify-center items-center bg-navbgSm h-full fixed top-0 -right-[100%] w-[280px] drop-shadow-2xl gap-14 flex-col'>
                 <CustomLink to="/" name='Home'  />
                 <CustomLink to="/login" name='Login' />
                 <CustomLink to="/register" name='Register' />
