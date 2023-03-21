@@ -68,13 +68,13 @@ function Nav() {
     }, []);
 
     return (
-        <nav className={`flex justify-between px-12 sm:px-32 py-6 bg-navbg sticky top-0 items-center }`}>
+        <nav className={`flex justify-between px-12 z-50 sm:px-32 py-6 bg-navbg sticky top-0 items-center }`}>
             <Link to="/" className='flex items-center gap-1'>
                 <img className='w-12 h-12' src={logo} alt="logo" />
                 <h1 className='text-2xl'>Incognito.</h1>
             </Link>
 
-            <div ref={nav} className='flex sm:flex-row sm:bg-transparent sm:relative sm:w-fit sm:gap-10 justify-center items-center bg-navbg z-50 h-full fixed top-0 -right-[100%] w-[280px] shadow-2xl gap-14 flex-col'>
+            <div ref={nav} className='flex sm:flex-row sm:bg-transparent sm:relative sm:w-fit sm:gap-10 justify-center items-center bg-navbgSm h-full fixed top-0 -right-[100%] w-[280px] drop-shadow-2xl gap-14 flex-col'>
                 <CustomLink to="/" name='Home'  />
                 <CustomLink to="/login" name='Login' />
                 <CustomLink to="/register" name='Register' />
