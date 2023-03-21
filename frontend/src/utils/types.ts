@@ -45,5 +45,5 @@ export interface MessageStateProp {
 
 export interface MessageActionProp {
     type: "FETCH_MESSAGE" | "DELETE_MESSAGE";
-    payload: object;
+    payload: object | any;
 }
