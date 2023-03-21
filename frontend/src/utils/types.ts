@@ -21,7 +21,7 @@ export interface AuthStateProp {
 
 export interface AuthActionProp {
     type: "LOGIN" | "LOGOUT";
-    payload: object;
+    payload?: object;
 }
 
 
