@@ -8,13 +8,13 @@ function SendMessage() {
     const query = new URLSearchParams(location.search);
 
     const [exist, setExist] = useState(false);
+    const [message, setMessage] = useState("");
 
     if (!query.has("user")) {
         return <Navigate to="/" />
     }
 
     const user = query.get("user");
-    // console.log(user);
 
     useEffect(() => {
         async function getUser() {
@@ -28,6 +28,29 @@ function SendMessage() {
 
         getUser()
     }, [])
+
+    const handleSubmit = async (e: React.FormEvent) => {
+
+        e.preventDefault();
+
+        const res = await fetch("http://localhost:3000/message", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ message, receiver: user })
+        });
+
+        const json = await res.json();
+
+        if (!res.ok) {
+            console.log("Error", json);
+        }
+
+        if (res.ok) {
+            console.log(json)
+        }
+    }
  
     return (
         <>
@@ -39,11 +62,11 @@ function SendMessage() {
 
                     <h2 className='text-xl'>Send a secret message to { user }</h2>
 
-                    <form className='mt-6'>
-                        <input type="text" className='border-none outline-none caret-dodger bg-primary w-60 pb-20 rounded' />
+                    <form onSubmit={handleSubmit} className='mt-6'>
+                        <input value={message} onChange={(e) => setMessage(e.target.value)} type="text" className='border-none outline-none caret-dodger bg-primary w-60 pb-20 rounded' />
                         <br />
 
-                        <button className='flex items-center justify-center gap-1 bg-dodger px-6 py-2 rounded-lg mt-4 relative left-1/2 -translate-x-1/2 shadow-2xl'>
+                        <button className='flex items-center justify-center gap-1 bg-dodger px-6 py-2 rounded-lg mt-4 relative left-1/2 -translate-x-1/2'>
                          <BsSend /> Send
                         </button>
                     </form>
