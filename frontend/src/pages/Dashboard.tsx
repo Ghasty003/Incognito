@@ -76,8 +76,8 @@ function Dashboard() {
                 <h2>Messages ({ messages.length })</h2>
 
                 {
-                    messages.length > 0 ? messages.map(() => (
-                        <Message />
+                    messages.length > 0 ? messages.map((message) => (
+                        <Message key={message._id} _id={message._id} message={message.message} createdAt={message.createdAt} />
                     )) : <p className='italic mt-3'>You have no message at the moment.</p>
                 }
             </div>
