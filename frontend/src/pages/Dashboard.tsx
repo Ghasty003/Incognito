@@ -44,7 +44,6 @@ function Dashboard() {
 
             if (response.ok) {
                 setMessages(json);
-                console.log(json)
             }
         }
 
@@ -52,18 +51,18 @@ function Dashboard() {
     }, []);
 
     return (
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center mb-5'>
 
             <div className='bg-navbg w-[400px] text-center p-10 rounded-lg mt-20'>
 
                 <div className='my-5'>
-                    <h1> {user?.username}'s Profile</h1>
+                    <h1 className='text-xl'> {user?.username}'s Profile</h1>
                     
                     <div className='flex justify-center gap-2 items-center'>
                         <p>{ userProfile }</p>
                         {
-                            copied ? <MdDone color='green' /> :
-                            <AiOutlineCopy title='copy' cursor="pointer" onClick={handleCopy} />
+                            copied ? <MdDone color='green' size={20} /> :
+                            <AiOutlineCopy size={20} title='copy' cursor="pointer" onClick={handleCopy} />
                         }
                     </div>
                 </div>
