@@ -16,6 +16,10 @@ function Register() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (username === "" || password === "") {
+            return;
+        }
         
         setLoading(true);
 
