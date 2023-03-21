@@ -8,6 +8,9 @@ module.exports = {
         navbg: "rgba(0, 0, 0, .2)",
         dodger: "#1e90ff",
       },
+      screens: {
+        tablet: { max: "740px" },
+      },
     },
   },
   plugins: [],
