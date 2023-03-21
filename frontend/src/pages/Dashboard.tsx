@@ -3,12 +3,11 @@ import { AiOutlineCopy, MdDone } from "react-icons/all";
 import Message from '../components/Message';
 import AuthContext from '../contexts/AuthContext';
 import MessageContext from '../contexts/MessageContext';
-import { MessageProp } from '../utils/types';
 
 
 function Dashboard() {
 
-    const { user } = React.useContext(AuthContext);
+    const { user, dispatch: authDispatch } = React.useContext(AuthContext);
 
     const [copied, setCopied] = React.useState(false);
 
@@ -51,8 +50,19 @@ function Dashboard() {
         getMessages();
     }, []);
 
+
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        authDispatch({ type: "LOGOUT" })
+    }
+
+
     return (
         <div className='flex flex-col items-center mb-5'>
+
+            <div className='flex justify-end items-center w-full py-5 px-20'>
+                <button onClick={handleLogout} className='bg-dodger rounded-lg px-4 py-2 drop-shadow-2xl duration-200 active:scale-95'>Logout</button>
+            </div>
 
             <div className='bg-navbg w-[400px] text-center p-10 rounded-lg mt-20'>
 
