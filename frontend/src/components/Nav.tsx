@@ -28,21 +28,40 @@ function Nav() {
     const [isOpen, setIsOpen] = React.useState(false);
     const nav = React.useRef<HTMLDivElement>(null!);
 
+    const animationOptions = {
+        iterations: 1,
+        duration: 300
+    }
+
+    const navBarOpen = [
+        { right: "-100%", opacity: 0 },
+        { right: 0, opacity: 1}
+    ]
+    
+    const navBarClose = [
+        { right: 0, opacity: 1},
+        { right: "-100%", opacity: 0 },
+    ]
+    
+
     const handleOpen = () => {
-        nav.current.classList.replace("hidden", "flex");
+        nav.current.animate(navBarOpen, animationOptions);
+        nav.current.classList.replace("-right-[100%]", "right-0");
         setIsOpen(true);
     }
 
     const handleClose = () => {
-        nav.current.classList.replace("flex", "hidden");
+        nav.current.animate(navBarClose, animationOptions);
+        nav.current.classList.replace("right-0", "-right-[100%]");
         setIsOpen(false);
     }
 
 
     React.useEffect(() => {
         document.addEventListener("click", (e) => {
-            if (!nav.current.classList.contains("hidden") && !(e.target as HTMLElement).classList.contains("flag")) {
-                nav.current.classList.replace("flex", "hidden");
+            if (!nav.current.classList.contains("-right-[100%]") && !(e.target as HTMLElement).classList.contains("flag")) {
+                nav.current.animate(navBarClose, animationOptions);
+                nav.current.classList.replace("right-0", "-right-[100%]");
                 setIsOpen(false);
             }
         })
@@ -55,14 +74,14 @@ function Nav() {
                 <h1 className='text-2xl'>Incognito.</h1>
             </Link>
 
-            <div ref={nav} className='sm:flex duration-500  hidden sm:flex-row sm:bg-transparent sm:relative sm:w-fit sm:gap-10 justify-center items-center bg-navbg z-50 h-full fixed top-0 right-0 w-1/2 gap-14 flex-col'>
+            <div ref={nav} className='flex sm:flex-row sm:bg-transparent sm:relative sm:w-fit sm:gap-10 justify-center items-center bg-navbg z-50 h-full fixed top-0 -right-[100%] w-[280px] shadow-2xl gap-14 flex-col'>
                 <CustomLink to="/" name='Home'  />
                 <CustomLink to="/login" name='Login' />
                 <CustomLink to="/register" name='Register' />
             </div>
 
             {
-                isOpen ? <RiMenuUnfoldLine onClick={handleClose} className='cursor-pointer relative z-[100] text-2xl' />  :
+                isOpen ? <RiMenuUnfoldLine onClick={handleClose} className='sm:hidden cursor-pointer relative z-[100] text-2xl' />  :
                  <RiMenuFoldLine onClick={handleOpen} className='sm:hidden cursor-pointer text-2xl flag' />
             }
         </nav>
