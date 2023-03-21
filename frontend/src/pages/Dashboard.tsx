@@ -76,7 +76,7 @@ function Dashboard() {
 
                 {
                     messages.map((message) => (
-                        <Message key={message._id} message={message.message} createdAt={message.createdAt} />
+                        <Message key={message._id} _id={message._id} message={message.message} createdAt={message.createdAt} />
                     ))
                 }
             </div>
