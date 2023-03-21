@@ -9,7 +9,7 @@ function Home() {
             
             <Nav />
 
-            <div className='sm:px-32 px-20 pt-10 pb-28 text-white'>
+            <div className='sm:px-32 px-14 pt-10 pb-28 text-white'>
 
                 <div className='flex tablet:flex-col items-center gap-6 justify-between mt-10 flex-row sm:gap-0'>
                     <div>
@@ -22,7 +22,7 @@ function Home() {
                     <img className='w-80 rounded-lg' src={header} alt="header" />
                 </div>
 
-                <div className='mt-10'>
+                <div className='mt-32'>
                     <Link to="/register" className='bg-blue-400 text-gray-100 px-8 py-3 rounded-xl active:scale-95 duration-200 hover:drop-shadow-2xl hover:bg-blue-400 hover:text-gray-300'>
                         Get started
                     </Link>
