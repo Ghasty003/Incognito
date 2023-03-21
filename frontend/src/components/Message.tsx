@@ -1,9 +1,12 @@
 import React from 'react';
 import { AiFillDelete } from 'react-icons/all';
+import MessageContext from '../contexts/MessageContext';
 import { MessageProp } from '../utils/types';
 
 
 function Message({ message, createdAt, _id }: MessageProp) {
+
+    const { dispatch } = React.useContext(MessageContext);
 
     const date = new Date(createdAt);
 
@@ -20,7 +23,7 @@ function Message({ message, createdAt, _id }: MessageProp) {
         }
 
         if (res.ok) {
-            console.log(json);
+            dispatch({ type: "DELETE_MESSAGE", payload: json });
         }
     }
     

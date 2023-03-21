@@ -12,12 +12,17 @@ const messageReducer: Reducer<MessageStateProp, MessageActionProp> = (state, act
     switch (action.type) {
         case "FETCH_MESSAGE":
             return {
+                messages: action.payload
+            }
+
+        case "ADD_MESSAGE":
+            return {
                 messages: [...state.messages, action.payload]
             }
 
         case "DELETE_MESSAGE":
             return {
-                messages: state.messages.filter(message => message._id != action.payload._id)
+                messages: state.messages.filter(message => message._id !== action.payload._id)
             }
 
         default:
@@ -37,7 +42,7 @@ export const MessageContextProvider = ({ children }: ContextProp) => {
 
     return (
         <MessageContext.Provider value={{ messages: state.messages, dispatch }}>
-
+            { children }
         </MessageContext.Provider>
     )
 }
