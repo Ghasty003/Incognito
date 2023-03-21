@@ -30,4 +30,11 @@ export class MessageService {
         return messages;
     }
 
+
+    async deleteMessage(_id: string) {
+        const message = await this.messageModel.findByIdAndDelete(_id);
+
+        return message;
+    }
+
 }
