@@ -82,9 +82,9 @@ function SendMessage() {
                 exist ? (
                     <div className='flex flex-wrap justify-around items-center translate-y-1/2 px-32'>
 
-                        <div className='bg-navbg text-center sm:mt-0 mt-8 sm:w-96 h-[280px] flex flex-col rounded-lg p-6'>
+                        <div className='bg-navbg text-center w-[300px] sm:mt-0 mt-8 sm:w-96 h-fit flex flex-col rounded-lg p-6'>
 
-                            <h2 className='text-xl'>Send a secret message to { user }</h2>
+                            <h2 className='sm:text-xl text-lg'>Send a secret message to { user }</h2>
 
                             <form onSubmit={handleSubmit} className='mt-6'>
                                 <input value={message} onChange={(e) => setMessage(e.target.value)} type="text" className='border-none outline-none caret-dodger bg-primary px-1 py-1 w-60 pb-20 rounded' />
@@ -96,7 +96,7 @@ function SendMessage() {
 
                                 {
                                     isSent ? <p className='flex justify-center items-center mt-4 gap-1'>Message sent <MdDone color='green' size={20} /></p> : (
-                                        <button disabled={isLoading} className='flex items-center justify-center gap-1 bg-dodger px-6 py-2 rounded-lg mt-4 relative left-1/2 -translate-x-1/2'>
+                                        <button disabled={isLoading} className='flex items-center justify-center gap-1 bg-dodger px-6 py-2 rounded-lg my-4 relative left-1/2 -translate-x-1/2'>
                                             {
                                                 isLoading ? <div className='animate-spin w-5 h-5 border-[2px] border-gray-600 rounded-full border-t-black mr-1'></div> : ""
                                             }
