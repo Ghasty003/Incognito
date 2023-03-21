@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { AiOutlineCopy, MdDone } from "react-icons/all";
 import Message from '../components/Message';
 import AuthContext from '../contexts/AuthContext';
+import MessageContext from '../contexts/MessageContext';
 import { MessageProp } from '../utils/types';
 
 
@@ -11,7 +12,7 @@ function Dashboard() {
 
     const [copied, setCopied] = React.useState(false);
 
-    const [messages, setMessages] = React.useState<Array<MessageProp>>([]);
+    const { messages, dispatch } = React.useContext(MessageContext);
 
     const webUrl = location.host;
     const userProfile = `${webUrl}/send?user=${user?.username}`;
@@ -43,7 +44,7 @@ function Dashboard() {
             }
 
             if (response.ok) {
-                setMessages(json);
+                dispatch({ type: 'FETCH_MESSAGE', payload: json});
             }
         }
 
@@ -75,8 +76,8 @@ function Dashboard() {
                 <h2>Messages ({ messages.length })</h2>
 
                 {
-                    messages.length > 0 ? messages.map((message) => (
-                        <Message key={message._id} _id={message._id} message={message.message} createdAt={message.createdAt} />
+                    messages.length > 0 ? messages.map(() => (
+                        <Message />
                     )) : <p className='italic mt-3'>You have no message at the moment.</p>
                 }
             </div>
