@@ -64,13 +64,13 @@ function Dashboard() {
                 <button onClick={handleLogout} className='bg-dodger rounded-lg px-4 py-2 drop-shadow-2xl duration-200 active:scale-95'>Logout</button>
             </div>
 
-            <div className='bg-navbg w-[400px] text-center p-10 rounded-lg mt-20'>
+            <div className='bg-navbg w-[320px] sm:w-[400px] text-center p-5 sm:p-10 rounded-lg mt-20'>
 
                 <div className='my-5'>
                     <h1 className='text-xl'> {user?.username}'s Profile</h1>
                     
                     <div className='flex justify-center gap-2 items-center'>
-                        <p>{ userProfile }</p>
+                        <p className='text-sm sm:text-base mt-2'>{ userProfile }</p>
                         {
                             copied ? <MdDone color='green' size={20} /> :
                             <AiOutlineCopy size={20} title='copy' cursor="pointer" onClick={handleCopy} />
@@ -82,7 +82,7 @@ function Dashboard() {
 
             </div>
 
-            <div className='bg-navbg w-[400px] text-center p-10 rounded-lg mt-20'>
+            <div className='bg-navbg w-[320px] sm:w-[400px] text-center p-10 rounded-lg mt-20'>
                 <h2>Messages ({ messages.length })</h2>
 
                 {
