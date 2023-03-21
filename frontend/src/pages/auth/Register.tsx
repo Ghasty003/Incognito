@@ -50,9 +50,9 @@ function Register() {
             
             <Nav />
 
-            <div className='flex flex-wrap justify-around items-center mt-20 px-32'>
+            <div className='flex flex-wrap justify-around items-center mt-20 sm:px-32'>
 
-                <div className='bg-navbg text-center sm:mt-0 mt-8 sm:w-96 h-[400px] flex flex-col rounded-lg p-6'>
+                <div className='bg-navbg text-center w-[320px] sm:mt-0 mt-8 sm:w-96 h-[400px] flex flex-col rounded-lg p-6'>
 
                     <div className='flex items-center gap-1 justify-center'>
                         <img className='w-10 h-10' src={logo} alt="logo" />
