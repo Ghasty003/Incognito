@@ -31,8 +31,8 @@ export class MessageService {
     }
 
 
-    async deleteMessage(_id: string) {
-        const message = await this.messageModel.findByIdAndDelete(_id);
+    async deleteMessage(id: string) {
+        const message = await this.messageModel.findByIdAndDelete(id);
 
         return message;
     }

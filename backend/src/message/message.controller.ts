@@ -20,7 +20,7 @@ export class MessageController {
 
 
     @Delete(":id")
-    async deleteMessage(@Param("id") _id: string) {
-        return this.messageService.deleteMessage(_id);
+    async deleteMessage(@Param("id") id: string) {
+        return this.messageService.deleteMessage(id);
     }
 }
