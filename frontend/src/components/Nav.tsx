@@ -27,6 +27,7 @@ function Nav() {
 
     const [isOpen, setIsOpen] = React.useState(false);
     const nav = React.useRef<HTMLDivElement>(null!);
+    const span = React.useRef<HTMLDivElement>(null!);
 
     const animationOptions = {
         iterations: 1,
@@ -57,15 +58,17 @@ function Nav() {
     }
 
 
-    React.useEffect(() => {
-        document.addEventListener("click", (e) => {
-            if (!nav.current.classList.contains("-right-[100%]") && !(e.target as HTMLElement).classList.contains("flag")) {
-                nav.current.animate(navBarClose, animationOptions);
-                nav.current.classList.replace("right-0", "-right-[100%]");
-                setIsOpen(false);
-            }
-        })
-    }, []);
+    // React.useEffect(() => {
+    //     span.current.addEventListener("click", () => console.log("cliclked"))
+    // }, [span]);
+
+    document.addEventListener("click", (e) => {
+        if (!nav.current.classList.contains("-right-[100%]") && !span.current.contains(e.target as HTMLElement)) {
+            nav.current.animate(navBarClose, animationOptions);
+            nav.current.classList.replace("right-0", "-right-[100%]");
+            setIsOpen(false);
+        }
+    })
 
     return (
         <nav className={`flex justify-between px-12 z-50 sm:px-32 py-6 bg-navbg sticky top-0 items-center }`}>
@@ -82,7 +85,7 @@ function Nav() {
 
             {
                 isOpen ? <RiMenuUnfoldLine onClick={handleClose} className='sm:hidden cursor-pointer relative z-[100] text-2xl' />  :
-                 <RiMenuFoldLine onClick={handleOpen} className='sm:hidden cursor-pointer text-2xl flag' />
+                <div ref={span} ><RiMenuFoldLine onClick={handleOpen} className='sm:hidden cursor-pointer text-2xl' /></div>
             }
         </nav>
     );
