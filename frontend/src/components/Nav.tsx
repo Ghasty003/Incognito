@@ -58,10 +58,6 @@ function Nav() {
     }
 
 
-    // React.useEffect(() => {
-    //     span.current.addEventListener("click", () => console.log("cliclked"))
-    // }, [span]);
-
     document.addEventListener("click", (e) => {
         if (!nav.current.classList.contains("-right-[100%]") && !span.current.contains(e.target as HTMLElement)) {
             nav.current.animate(navBarClose, animationOptions);
