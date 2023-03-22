@@ -25,7 +25,7 @@ function SendMessage() {
 
     useEffect(() => {
         async function getUser() {
-            const res = await fetch("http://localhost:3000/auth?user=" + user);
+            const res = await fetch("localhost:5173/send?user=Ghasty/auth?user=" + user);
 
             const json = await res.json();
             // console.log(json)
