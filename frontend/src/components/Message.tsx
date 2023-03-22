@@ -12,7 +12,7 @@ function Message({ message, createdAt, _id }: MessageProp) {
 
 
     const handleClick = async () => {
-        const res = await fetch("http://localhost:3000/message/" + _id, {
+        const res = await fetch("https://incognito-j4hs.onrender.com/message/" + _id, {
             method: "DELETE"
         });
 
