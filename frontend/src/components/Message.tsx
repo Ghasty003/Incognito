@@ -30,12 +30,12 @@ function Message({ message, createdAt, _id }: MessageProp) {
 
     return (
         <div onClick={handleClick} className='bg-primary my-4 p-2 rounded'>
-            <div className='flex justify-between items-center '>
+            <div className='flex justify-between items-center text-start'>
                 <p>{ message }</p>
                 <AiFillDelete className='text-red-600 text-xl cursor-pointer' />
             </div>
 
-            { date.getHours() <= 24 ? <p className='text-start'>{ date.getHours() } hrs ago</p> :
+            { date.getHours() <= 24 ? <p className='text-start mt-2'>{ date.getHours() } hrs ago</p> :
                 <p className='text-start'>{ date.toDateString() }</p>
             }
         </div>
