@@ -12,6 +12,7 @@ function App() {
   const SendMessage = lazy(() => import("./pages/SendMessage"));
   const Register = lazy(() => import("./pages/auth/Register"));
   const Login = lazy(() => import("./pages/auth/Login"));
+  const Loading = lazy(() => import("./components/Loading"));
   
   return (
     <Routes>
@@ -24,7 +25,7 @@ function App() {
       />
 
       <Route path="/register" element={!user ? 
-        <Suspense fallback={<h1>Loading..</h1>}>
+        <Suspense fallback={<Loading />}>
           <Register />
         </Suspense> : <Navigate to="/dashboard" />} 
       />
