@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react';
 import { AiOutlineCopy, MdDone } from "react-icons/all";
-import Message from '../components/Message';
+// import Message from '../components/Message';
 import AuthContext from '../contexts/AuthContext';
 import MessageContext from '../contexts/MessageContext';
+import Loading from '../components/Loading';
+
+
+const Message = React.lazy(() => import("../components/Message"));
 
 
 function Dashboard() {
@@ -67,7 +71,8 @@ function Dashboard() {
         <div className='flex flex-col items-center mb-5'>
 
             {
-                authorized ? (
+                <React.Suspense fallback={<Loading />}>
+                    {authorized ? (
                     <>
                         <div className='flex justify-end items-center w-full py-5 px-20'>
                             <button onClick={handleLogout} className='bg-dodger rounded-lg px-4 py-2 drop-shadow-2xl duration-200 active:scale-95'>Logout</button>
@@ -101,7 +106,8 @@ function Dashboard() {
                             }
                         </div>
                     </>
-                ) : <h2 className='text-3xl mt-[20%]'>Unauthorized User.</h2>
+                ) : <h2 className='text-3xl mt-[20%]'>Unauthorized User.</h2> }
+                </React.Suspense>
             }
 
         </div>
