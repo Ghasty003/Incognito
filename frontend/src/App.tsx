@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom"
 import { useContext, Suspense, lazy } from "react";
 import AuthContext from "./contexts/AuthContext";
 import Home from "./pages/Home"
+import Loading from "./components/Loading";
 
 
 function App() {
@@ -12,32 +13,31 @@ function App() {
   const SendMessage = lazy(() => import("./pages/SendMessage"));
   const Register = lazy(() => import("./pages/auth/Register"));
   const Login = lazy(() => import("./pages/auth/Login"));
-  const Loading = lazy(() => import("./components/Loading"));
   
   return (
     <Routes>
       <Route index path="/" element={!user ? <Home /> : <Navigate to="/dashboard" />} />
 
-      <Route path="/dashboard" element={user ? 
-        <Suspense fallback={<h1>Loading..</h1>}>
-          <Dashboard />
-        </Suspense> : <Navigate to="/login" />} 
-      />
-
-      <Route path="/register" element={!user ? 
+      <Route path="/dashboard" element={ 
         <Suspense fallback={<Loading />}>
-          <Register />
-        </Suspense> : <Navigate to="/dashboard" />} 
+         {user ? <Dashboard /> : <Navigate to="/login" />}
+        </Suspense> } 
       />
 
-      <Route path="/login" element={!user ? 
-        <Suspense fallback={<h1>Loading..</h1>}>
-          <Login />
-        </Suspense> : <Navigate to="/dashboard" />} 
+      <Route path="/register" element={
+        <Suspense fallback={<Loading />}>
+          {!user ? <Register /> : <Navigate to="/dashboard" />}
+        </Suspense> } 
+      />
+
+      <Route path="/login" element={ 
+        <Suspense fallback={<Loading />}>
+          {!user ? <Login /> : <Navigate to="/dashboard" />}
+        </Suspense> } 
       />
 
       <Route path="/send" element={
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={<Loading />}>
           <SendMessage />
         </Suspense>
       } />
