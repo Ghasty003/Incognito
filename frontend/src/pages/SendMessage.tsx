@@ -24,8 +24,12 @@ function SendMessage() {
     const { dispatch } = useContext(MessageContext);
 
     useEffect(() => {
+
+        const controller = new AbortController();
+        const signal = controller.signal;
+        
         async function getUser() {
-            const res = await fetch("https://incognito-j4hs.onrender.com/auth?user=" + user);
+            const res = await fetch("https://incognito-j4hs.onrender.com/auth?user=" + user, { signal });
 
             const json = await res.json();
             // console.log(json)
@@ -34,6 +38,10 @@ function SendMessage() {
         }
 
         getUser();
+
+        return () => {
+            controller.abort();
+        }
     }, [])
 
     const handleSubmit = async (e: React.FormEvent) => {
