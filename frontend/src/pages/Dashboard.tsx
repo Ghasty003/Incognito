@@ -37,11 +37,16 @@ function Dashboard() {
 
 
     useEffect(() => {
+
+        const controller = new AbortController();
+        const signal = controller.signal
+
         async function getMessages() {
             const response = await fetch("https://incognito-j4hs.onrender.com/message?user=" + user?.username, {
                 headers: {
                     Authorization: `Bearer ${user?.token}`
-                }
+                },
+                signal
             });
 
             const json = await response.json();
@@ -58,6 +63,10 @@ function Dashboard() {
         }
 
         getMessages();
+
+        return () => {
+            controller.abort();
+        }
     }, []);
 
 
